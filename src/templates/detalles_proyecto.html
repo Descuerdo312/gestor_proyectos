@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Proyecto</title>
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h1>Detalles del Proyecto</h1>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h2 class="card-title">Nombre del Producto: {{ producto.nombre_producto }}</h2>
+                <h5 class="card-subtitle mb-2 text-muted">Estado del Proyecto: {{ producto.estado_proyecto }} - Prioridad del Desarrollo: {{ producto.grado_de_prioridad }}</h5>
+                <p class="card-text">Descripción del Proyecto: {{ producto.descripcion }}</p>
+                <p class="card-text">Documentación: {{ producto.documentación }}</p>
+                <p class="card-text">Líder del Equipo: {{ producto.lider_del_equipo }}</p>
+                <p class="card-text">Miembros del Equipo:
+                    {% for miembro in producto.miembros_del_equipo %}
+                        {{ miembro }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+                <p class="card-text">Fecha inicio: {{ producto.fecha_inicio }} - Fecha de entrega: {{ producto.fecha_final }}</p>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h3 class="card-title">Tareas:</h3>
+                <form action="/asignar_tareas" method="post">
+                    <input type="hidden" name="producto_id" value="{{ producto._id }}">
+                    <ul class="list-group">
+                        {% for tarea in producto.tareas %}
+                            <li class="list-group-item">
+                                Tarea: {{ tarea }} - Encargado:
+                                <select class="form-select" name="encargados">
+                                    {% for miembro in producto.miembros_del_equipo %}
+                                        <option value="{{ miembro }}">{{ miembro }}</option>
+                                    {% endfor %}
+                                </select>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <button type="submit" class="btn btn-primary">Asignar Tareas</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Reportes:</h3>
+                <ul class="list-group">
+                    {% for reporte in producto.reportes %}
+                        <li class="list-group-item">{{ reporte }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>

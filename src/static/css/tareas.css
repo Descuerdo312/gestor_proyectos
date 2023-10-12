@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.tarea-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.tarea-box {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 45%;
+    margin-bottom: 20px;
+}
+
+.tarea-box h2 {
+    margin-top: 0;
+}
+
+textarea {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.enviar-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.enviar-btn:hover {
+    background-color: #0056b3;
+}

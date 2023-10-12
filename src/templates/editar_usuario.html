@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Usuario</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">
+    <h1 class="mb-4">Editar Usuario</h1>
+    <form action="/guardar_edicion_usuario" method="post">
+        <input type="hidden" name="usuario_id" value="{{ usuario._id }}">
+        
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" class="form-control" id="nombre" name="nuevo_nombre" value="{{ usuario.nombre }}">
+        </div>
+        
+        <div class="form-group">
+            <label for="correo">Correo:</label>
+            <input type="text" class="form-control" id="correo" name="nuevo_correo" value="{{ usuario.correo }}">
+        </div>
+        
+        <div class="form-group">
+            <label for="password">Contraseña:</label>
+            <input type="password" class="form-control" id="password" name="nuevo_password" value="{{ usuario.password }}">
+        </div>
+        
+        <div class="form-group">
+            <label for="cargo">Cargo:</label>
+            <select class="form-control" id="cargo" name="nuevo_cargo">
+                <option value="lider" {% if usuario.cargo == 'lider' %}selected{% endif %}>Líder</option>
+                <option value="miembro" {% if usuario.cargo == 'miembro' %}selected{% endif %}>Miembro</option>
+                <option value="Jefe" {% if usuario.cargo == 'jefe' %}selected{% endif %}>Jefe</option>
+                <option value="monitor de proyectos" {% if usuario.cargo == 'monitor de proyectos' %}selected{% endif %}>Monitor de Proyectos</option>
+            </select>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Tareas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tareas.css') }}">
+</head>
+<body>
+    <h1>Tareas de {{ usuario.nombre }}</h1>
+
+    <div class="tarea-container">
+        {% for tarea in tareas %}
+            <div class="tarea-box">
+                <h2>Tarea: {{ tarea }}</h2>
+                <form action="/enviar_tarea" method="post">
+                    <input type="hidden" name="nombre_tarea" value="{{ tarea }}">
+                    <input type="hidden" name="correo_encargado" value="{{ usuario.nombre }}">
+                    <textarea name="respuesta" cols="30" rows="5"></textarea><br>
+                    <button type="submit" class="enviar-btn">Enviar Tarea</button>
+                </form>                
+            </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

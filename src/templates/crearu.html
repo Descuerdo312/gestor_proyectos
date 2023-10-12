@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Usuario</title>
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="text-center mb-4">Crear Usuario</h1>
+                        <form action="/guardar_personas" method="post">
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre:</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="correo" class="form-label">Correo:</label>
+                                <input type="email" class="form-control" id="correo" name="correo" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Contraseña:</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="cargo" class="form-label">Cargo:</label>
+                                <select class="form-select" id="cargo" name="cargo" required>
+                                    <option value="Jefe">Jefe</option>
+                                    <option value="monitor de proyectos">monitor de proyectos</option>
+                                    <option value="lider">Lider</option>
+                                    <option value="miembro">Miembro</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Guardar Usuario</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>

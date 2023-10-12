@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Jefe</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+        .boton-container {
+            text-align: center;
+        }
+        .boton {
+            display: block;
+            width: 200px;
+            height: 50px;
+            margin: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            border: 2px solid #28a745;
+            color: #ffffff;
+            background-color: #28a745;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .boton:hover {
+            background-color: #ffffff;
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <h1>Panel de control</h1>
+    <div class="boton-container">
+        <a id="boton1" class="boton">Crear Proyectos</a>
+        <a id="boton2" class="boton">Editar y Eliminar Personal</a>
+        <a id="boton4" class="boton">Lista de Proyectos</a>
+    </div>
+
+    <script>
+        document.getElementById('boton1').addEventListener('click', function() {
+            window.location.href = 'ingresar';
+        });
+        document.getElementById('boton2').addEventListener('click', function() {
+            window.location.href = 'ver_usuarios';
+        });
+        document.getElementById('boton4').addEventListener('click', function() {
+            window.location.href = 'visualizar';
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Proyecto</title>
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Editar Proyecto</h1>
+
+        <form action="/guardar_edicion" method="post">
+            <input type="hidden" name="producto_id" value="{{ producto._id }}">
+
+            <div class="mb-3">
+                <label for="nombre_producto" class="form-label">Nombre del Producto:</label>
+                <input type="text" class="form-control" id="nombre_producto" name="nombre_producto" value="{{ producto.nombre_producto }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="descripcion_proyecto" class="form-label">Descripción del Proyecto:</label>
+                <textarea class="form-control" id="descripcion_proyecto" name="descripcion_proyecto" required>{{ producto.descripcion }}</textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="estado_proyecto" class="form-label">Estado del Proyecto:</label>
+                <input type="text" class="form-control" id="estado_proyecto" name="estado_proyecto" value="{{ producto.estado_proyecto }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="nivel_prioridad" class="form-label">Prioridad del Desarrollo:</label>
+                <input type="text" class="form-control" id="nivel_prioridad" name="nivel_prioridad" value="{{ producto.nivel_prioridad }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="tareas" class="form-label">Tareas (separadas por comas):</label>
+                <input type="text" class="form-control" id="tareas" name="tareas" value="{{ producto.tareas|join(',') }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="Documentacion" class="form-label">Documentación:</label>
+                <input type="text" class="form-control" id="Documentacion" name="Documentacion" value="{{ producto.documentación }}">
+            </div>
+
+            <div class="mb-3">
+                <label for="lider_equipo" class="form-label">Líder del Equipo:</label>
+                <select class="form-select" id="lider_equipo" name="lider_equipo" required>
+                    {% for lider in lideres %}
+                        <option value="{{ lider }}" {% if lider == producto.lider_del_equipo %}selected{% endif %}>{{ lider }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="miembros_equipo" class="form-label">Miembros del Equipo:</label>
+                <select class="form-select" id="miembros_equipo" name="miembros_equipo" multiple required>
+                    {% for miembro in miembros %}
+                        <option value="{{ miembro }}" {% if miembro in producto.miembros_del_equipo %}selected{% endif %}>{{ miembro }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="fecha_inicio" class="form-label">Fecha de Inicio:</label>
+                <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" value="{{ producto.fecha_inicio }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="fecha_final" class="form-label">Fecha de Entrega:</label>
+                <input type="date" class="form-control" id="fecha_final" name="fecha_final" value="{{ producto.fecha_final }}" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>

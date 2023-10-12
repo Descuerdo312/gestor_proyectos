@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Proyectos</title>
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <h1 class="mb-4">Proyectos</h1>
+
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Nombre del Producto</th>
+                        <th scope="col">Descripción del Proyecto</th>
+                        <th scope="col">Líder del Equipo</th>
+                        <th scope="col">Miembros del Equipo</th>
+                        <th scope="col">Estado del Proyecto</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for producto in productos %}
+                        <tr>
+                            <td>{{ producto.nombre_producto }}</td>
+                            <td>{{ producto.descripcion }}</td>
+                            <td>{{ producto.lider_del_equipo }}</td>
+                            <td>
+                                {% for miembro in producto.miembros_del_equipo %}
+                                    {{ miembro }}
+                                {% endfor %}
+                            </td>
+                            <td>{{ producto.grado_de_prioridad }}</td>
+                            <td>
+                                <a href="{{ url_for('editar_proyecto', id=producto._id) }}" class="btn btn-info btn-sm">Editar</a>
+                                <a href="{{ url_for('detalles_proyecto', id=producto._id) }}" class="btn btn-primary btn-sm">Detalles</a>
+                                <a href="{{ url_for('eliminar_proyecto', id=producto._id) }}" class="btn btn-danger btn-sm">Eliminar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>
